@@ -1,16 +1,21 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# python
+import argparse
+from typing import Any
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def greet(name: str) -> str:
+    """Return a greeting for `name`."""
+    return f"Hi, {name}"
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def main(argv: Any = None) -> int:
+    """CLI entry point. Returns exit code."""
+    parser = argparse.ArgumentParser(description="Simple greeting script.")
+    parser.add_argument("-n", "--name", default="PyCharm", help="Name to greet")
+    args = parser.parse_args(argv)
+    print(greet(args.name))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
