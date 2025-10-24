@@ -1,1 +1,4 @@
 .idea/
+
+# Python virtualenv
+quantum/quantum/.venv/
