@@ -1,0 +1,118 @@
+1. Define SSE-focused scope and success criteria for Option B
+- Clarify that Option B = SSE (stochastic dephasing noise) unraveling, avoiding full density matrix storage
+- Success = ability to run current simulator with optional SSE dephasing, produce Γ_map overlays, and observe coherence decay matching Tegmark-order magnitudes
+2. Add minimal open-systems scaffolding module (quantum/open_systems.py)
+- Implement build_dephasing_map(r, z, T, medium, cytokine_phase, params) returning Γ_map with units notes
+- Implement sse_dephasing_step(psi, Gamma_map, dt, rng) with white-noise dephasing consistent with Γ (Ito/Euler-Maruyama)
+- Implement coherence_metrics_sse(psi) with simple diagnostics (norm check, entropy proxy, spatial correlation)
+- Include docstrings with citations (Tegmark 2000; Haken–Strobl–Reineker; Breuer–Petruccione)
+3. Extend simulator configuration to select dephasing model and parameters
+- In script/microtubule_quantum_coherence_full_simulation.py add config keys: dephasing_model {"none","SSE_local","SSE_correlated"}, temperature_K, ionic_strength_M, dielectric_rel, gamma_scale_alpha, corr_length_xi
+- Default to dephasing_model="none" to preserve current behavior
+- Validate and store parameters in __init__ and _setup_parameters
+4. Hook Option B into simulator lifecycle
+- Add _setup_decoherence(): call build_dephasing_map and cache Γ_map and ξ
+- In main time loop: after Hamiltonian step, call sse_dephasing_step when dephasing_model startswith "SSE"
+- Ensure probability norm is preserved in expectation (renormalize per step if using phase-only dephasing)
+5. Visualization and data outputs for Option B
+- Save Γ_map to data directory; add overlay panels of Γ_map with |ψ|^2 snapshots
+- Log coherence metrics over time; export JSON/CSV; add quick plots under figures_dir
+6. Validation against Tegmark-style estimates
+- Implement a small analysis script/notebook: for chosen Δx, temperature, and medium, compute expected dephasing rate Γ_Tegmark and compare to simulated decay constant
+- Run across HIV phases mapping to Γ scaling; report half-life and variance bands from multiple SSE trajectories
+7. Optional spatially correlated SSE (SSE_correlated)
+- Introduce Gaussian noise kernel with correlation length ξ; generate correlated noise via FFT-based filtering or circulant embedding
+- Compare coherence length and decay vs local SSE
+8. Performance and stability safeguards
+- Use vectorized operations for noise injection; ensure dt·Γ << 1; offer RNG seeding for reproducibility
+- Provide small-grid demo config and convergence checklist (dt, N_r, N_z)
+9. Tests and examples
+- Add a smoke test that runs a short simulation with dephasing_model="SSE_local" and asserts monotonic increase of dephasing indicator and bounded norm
+- Provide an example script in Extra demonstrating SSE toggle and saving outputs
+10. Documentation updates
+- Update project docs with an "Option B (SSE) Quickstart" and parameter explanations
+11. Approval and next steps
+- After roadmap approval, implement steps 2–5 first; then proceed with 6–9; 7 is optional stretch goal
+12. Submit the roadmap deliverable
+
+
+---
+Status update (2025-10-17 17:37)
+- 1. Define SSE-focused scope and success criteria for Option B — Completed (scope defined; success criteria set) ✓
+- 2. Add minimal open-systems scaffolding module (quantum/open_systems.py) — Completed (build_dephasing_map, sse_dephasing_step, coherence_metrics_sse in place; docstrings with citations) ✓
+- 3. Extend simulator configuration to select dephasing model and parameters — Completed (dephasing_model {"none","SSE_local","SSE_correlated"}, temperature_K, ionic_strength_M, dielectric_rel, gamma_scale_alpha, corr_length_xi) ✓
+- 4. Hook Option B into simulator lifecycle — Completed (setup/build Γ_map; apply SSE each step; cylindrical renormalization) ✓
+- 5. Visualization and data outputs for Option B — Partial (Γ_map and kernel saved; overlay panels and time-series coherence logging/CSV pending) *
+- 6. Validation against Tegmark-style estimates — Pending (helper exists; analytical Γ_Tegmark comparison + fits not yet implemented)
+- 7. Optional spatially correlated SSE (SSE_correlated) — Completed (Gaussian kernel; FFT-based correlation; saving kernel) ✓
+- 8. Performance and stability safeguards — Partial (vectorized noise and clamping present; RNG seeding/config and dt·Γ guard/warnings pending; add small-grid demo config) * 
+- 9. Tests and examples — Partial (Extra/sse_validation.py example added; smoke test to assert bounded norm and dephasing indicator pending) *
+- 10. Documentation updates — Pending (Option B (SSE) Quickstart and parameter explanations not yet added)
+- 11. Approval and next steps — Ongoing (prioritize completing 5, 6, 8, 9, 10)
+- 12. Submit the roadmap deliverable — Pending (to close after remaining items complete)
+
+
+---
+Status update (2025-10-17 17:48)
+- 1. Define SSE-focused scope and success criteria for Option B — Completed (scope defined; success criteria set) ✓
+- 2. Add minimal open-systems scaffolding module (quantum/open_systems.py) — Completed (build_dephasing_map, sse_dephasing_step, coherence_metrics_sse in place; docstrings with citations) ✓
+- 3. Extend simulator configuration to select dephasing model and parameters — Completed (dephasing_model {"none","SSE_local","SSE_correlated"}, temperature_K, ionic_strength_M, dielectric_rel, gamma_scale_alpha, corr_length_xi) ✓
+- 4. Hook Option B into simulator lifecycle — Completed (setup/build Γ_map; apply SSE each step; cylindrical renormalization) ✓
+- 5. Visualization and data outputs for Option B — Completed (Γ_map and kernel saved; overlay panels implemented; time-series SSE coherence CSV exported) ✓
+- 6. Validation against Tegmark-style estimates — Partial (helper implemented with Γ_Tegmark and exponential fit; HIV-phase sweep and variance bands from multiple trajectories pending) *
+- 7. Optional spatially correlated SSE (SSE_correlated) — Completed (Gaussian kernel; FFT-based correlation; saving kernel) ✓
+- 8. Performance and stability safeguards — Partial (RNG seeding/config and dt·Γ guard/clipping implemented; convergence checklist/documented small-grid recommendations pending) *
+- 9. Tests and examples — Completed (Extra/sse_validation example present; Extra/sse_smoke_test added) ✓
+- 10. Documentation updates — Completed (Option B (SSE) Quickstart and parameter explanations added) ✓
+- 11. Approval and next steps — Ongoing (prioritize completing 6 and 8; monitor stability guard) 
+- 12. Submit the roadmap deliverable — Pending (to close after remaining partial items complete)
+
+
+---
+Status update (2025-10-17 17:49)
+- 1. Define SSE-focused scope and success criteria for Option B — Completed (scope defined; success criteria set) ✓
+- 2. Add minimal open-systems scaffolding module (quantum/open_systems.py) — Completed (build_dephasing_map, sse_dephasing_step, coherence_metrics_sse in place; docstrings with citations) ✓
+- 3. Extend simulator configuration to select dephasing model and parameters — Completed (dephasing_model {"none","SSE_local","SSE_correlated"}, temperature_K, ionic_strength_M, dielectric_rel, gamma_scale_alpha, corr_length_xi) ✓
+- 4. Hook Option B into simulator lifecycle — Completed (setup/build Γ_map; apply SSE each step; cylindrical renormalization) ✓
+- 5. Visualization and data outputs for Option B — Completed (Γ_map and kernel saved; overlay panels implemented; time-series SSE coherence CSV exported) ✓
+- 6. Validation against Tegmark-style estimates — Completed (added Extra/sse_phase_sweep.py to run phase sweeps with multi-trajectory variance bands; half-life stats; existing Extra/tegmark_compare.py for single-run fits) ✓
+- 7. Optional spatially correlated SSE (SSE_correlated) — Completed (Gaussian kernel; FFT-based correlation; saving kernel) ✓
+- 8. Performance and stability safeguards — Completed (rng seeding and dt·Γ guard/clipping implemented; added project docs/SSE_Convergence_Checklist.md and Extra/sse_demo_config.py) ✓
+- 9. Tests and examples — Completed (Extra/sse_validation example present; Extra/sse_smoke_test added) ✓
+- 10. Documentation updates — Completed (Option B (SSE) Quickstart and parameter explanations added; pointers to new helpers) ✓
+- 11. Approval and next steps — Ongoing (monitor stability guard under diverse configs)
+- 12. Submit the roadmap deliverable — Pending (to close after any final tweaks)
+
+
+
+---
+Status update (2025-10-17 18:24)
+- 1. Define SSE-focused scope and success criteria for Option B — Completed (scope defined; success criteria set) ✓
+- 2. Add minimal open-systems scaffolding module (quantum/open_systems.py) — Completed (build_dephasing_map, sse_dephasing_step, coherence_metrics_sse implemented; citations in docstrings) ✓
+- 3. Extend simulator configuration to select dephasing model and parameters — Completed (dephasing_model {"none","SSE_local","SSE_correlated"}, temperature_K, ionic_strength_M, dielectric_rel, gamma_scale_alpha, corr_length_xi) ✓
+- 4. Hook Option B into simulator lifecycle — Completed (Γ_map built; SSE applied per step; cylindrical renormalization preserved) ✓
+- 5. Visualization and data outputs for Option B — Completed (Γ_map and kernel saved; overlay panels implemented; SSE coherence CSV exported) ✓
+- 6. Validation against Tegmark-style estimates — Completed (Extra/sse_phase_sweep.py for multi‑trajectory variance bands and half‑life; Extra/tegmark_compare.py for single‑run fits) ✓
+- 7. Optional spatially correlated SSE (SSE_correlated) — Completed (Gaussian kernel; FFT‑based correlation; kernel saving) ✓
+- 8. Performance and stability safeguards — Completed (rng seeding and dt·Γ guard/clipping in simulator; project docs/SSE_Convergence_Checklist.md and Extra/sse_demo_config.py) ✓
+- 9. Tests and examples — Completed (Extra/sse_validation.py and Extra/sse_smoke_test.py) ✓
+- 10. Documentation updates — Completed (Option_B_SSE_Quickstart.md; README; visualization helper docs) ✓
+- 11. Approval and next steps — Ongoing (monitor stability guard across diverse configs; minor doc polish as needed)
+- 12. Submit the roadmap deliverable — Pending (to be closed after final confirmation)
+
+Notes for this update
+- Expanded Extra/venv_info.txt with end‑to‑end venv, CLI/Make, validation, visualization, and reproducibility instructions to streamline onboarding.
+- Visualization helper (Extra/sse_visualize.py) and Makefile viz targets verified against recent outputs under datafiles/ and figures/.
+- No core simulator logic changes since the previous status; repository state remains stable and reproducible via the provided Make targets and CLI.
+
+---
+Status update (2025-10-17 19:04)
+- 1–10: Completed previously; unchanged. ✓
+- 11: Ongoing. Added Monte Carlo analytics helper and Make targets. ✓
+- 12: Pending. Will close after user confirmation of MC analytics.
+
+New artifacts:
+- Extra/sse_mc_analytics.py (run, summarize, viz)
+- Extra/sse_mc_smoke_test.py (tiny ensemble check)
+- Makefile targets: mc-run, mc-viz, mc-smoke
+- README.md and Extra/venv_info.txt updated with MC instructions.
