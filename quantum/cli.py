@@ -49,7 +49,7 @@ def parse_args(argv=None):
 
 def run_from_args(args) -> Optional[str]:
     # Local import to avoid heavy import on help
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
 
     cfg = {
         'dephasing_model': args.dephasing_model,

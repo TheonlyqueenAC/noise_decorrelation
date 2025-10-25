@@ -8,7 +8,7 @@ import numpy as np
 
 
 def run_short(mode: str, xi: float = 0.0, seed: int = 42):
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
 
     config = {
         'N_r': 40,

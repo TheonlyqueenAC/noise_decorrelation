@@ -15,15 +15,14 @@ Your v2.1 results showed:
 
 from __future__ import annotations
 
-import argparse
 import os
-
-import arviz as az
+import argparse
 import numpy as np
 import pandas as pd
+
 import pymc as pm
 import pytensor.tensor as pt
-
+import arviz as az
 
 # --------------------------------------------------------------------------------------
 # Constants

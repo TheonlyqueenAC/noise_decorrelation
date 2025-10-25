@@ -90,7 +90,7 @@ def run_trial(idx: int,
               cfg_base: Dict[str, Any],
               sample: Dict[str, Any],
               base_seed: int) -> Dict[str, Any]:
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
 
     cfg = dict(cfg_base)
     cfg.update({

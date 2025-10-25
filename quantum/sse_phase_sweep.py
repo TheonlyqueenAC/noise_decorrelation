@@ -95,7 +95,7 @@ def run_trajectory(phase: str, mode: str, xi: float, base_seed: int, traj_idx: i
                    N_r: int, N_z: int, dt: float, time_steps: int, frames_to_save: int,
                    Gamma_0: float, alpha_c: float,
                    temperature_K: float, ionic_strength_M: float, dielectric_rel: float) -> Dict[str, Any]:
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
 
     seed = int(base_seed + traj_idx)
     cfg = {

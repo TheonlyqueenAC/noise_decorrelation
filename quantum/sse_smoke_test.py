@@ -6,7 +6,7 @@ Run: python Extra/sse_smoke_test.py
 """
 
 def run_smoke():
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
     cfg = {
         'N_r': 24,
         'N_z': 24,

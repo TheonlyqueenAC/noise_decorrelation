@@ -14,8 +14,8 @@
 2. **This Index** - Navigation guide to all analyses and visualizations
 
 ### Detailed Technical Reports
-3. [**Coherence Evolution Report**](microtubule_analysis_report.md) - 13-page analysis of temporal dynamics
-4. [**Spatial Analysis Report**](spatial_analysis_comprehensive_report.md) - 20-page deep dive into spatial distributions
+3. [**Coherence Evolution Report**](../results/microtubule_analysis_report.md) - 13-page analysis of temporal dynamics
+4. [**Spatial Analysis Report**](../results/spatial_analysis_comprehensive_report.md) - 20-page deep dive into spatial distributions
 
 ### Visualization Galleries
 - **Temporal Dynamics** - 3 comprehensive plots
@@ -314,8 +314,8 @@
 3. Check Quick Statistics Reference above (2 minutes)
 
 ### For Technical Understanding
-1. Read [Temporal Analysis Report](microtubule_analysis_report.md) (30 minutes)
-2. Read [Spatial Analysis Report](spatial_analysis_comprehensive_report.md) (45 minutes)
+1. Read [Temporal Analysis Report](../results/microtubule_analysis_report.md) (30 minutes)
+2. Read [Spatial Analysis Report](../results/spatial_analysis_comprehensive_report.md) (45 minutes)
 3. Review all visualizations in order (20 minutes)
 
 ### For Research Planning

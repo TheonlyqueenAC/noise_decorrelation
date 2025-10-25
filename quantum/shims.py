@@ -17,7 +17,7 @@ Notes:
 # Try preferred source first
 _METRICS_SOURCE = None
 try:  # Preferred cohesive implementation
-    from script.Tegmarks_Cat_source_code_3.metrics import (
+    from Legacy.Tegmarks_Cat_source_code_3.metrics import (
         calculate_probability_density,
         calculate_coherence,
         calculate_dispersion_metrics,
@@ -25,7 +25,7 @@ try:  # Preferred cohesive implementation
     _METRICS_SOURCE = "script/Tegmarks_Cat_source_code_3/metrics.py"
 except Exception:  # Fallback to alternate legacy path
     try:
-        from script.tegmarks_cat_source_code.code.metrics import (
+        from Legacy.tegmarks_cat_source_code.code.metrics import (
             calculate_probability_density,
             calculate_coherence,
             calculate_dispersion_metrics,

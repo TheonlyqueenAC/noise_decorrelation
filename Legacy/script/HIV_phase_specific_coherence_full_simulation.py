@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, FFMpegWriter
 import os
 import sys
 from datetime import datetime
@@ -9,7 +8,7 @@ import time
 # Import the simulator class from the main package
 # If the main package is not in the path, add your local path here
 sys.path.append(os.path.abspath(''))
-from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
 
 
 def run_hiv_phase_detailed_simulation(phase):

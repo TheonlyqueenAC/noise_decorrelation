@@ -30,7 +30,7 @@ def recommended_config():
 
 
 def run_demo(cfg):
-    from quantum.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
+    from Legacy.microtubule_quantum_coherence_full_simulation import MicrotubuleQuantumSimulator
     sim = MicrotubuleQuantumSimulator(config=cfg)
     sim.run_simulation()
     run_id = sim.save_data()
