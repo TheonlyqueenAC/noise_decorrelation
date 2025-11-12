@@ -1,0 +1,59 @@
+================================================================================
+ BAYESIAN INFERENCE v3.6 RESULTS
+================================================================================
+
+Environment: PyMC=5.12.0, PyTensor=2.19.0
+Initializer requested: jitter+adapt_diag
+Initializer resolved: jitter+adapt_diag
+Sampling path used: explicit_nuts+retry(explicit_nuts)
+Noise prior: Gaussian (HalfNormal; NAA=0.06, Cho=0.03)
+Reparameterization: xi_param requested=noncentered; resolved=noncentered
+xi bounds (nm): [0.350, 0.900]
+Note: Switching parameterization changes geometry; identical --seed won't reproduce across modes.
+
+Sampler diagnostics:
+  Sampling path used: explicit_nuts+retry(explicit_nuts)
+  Divergences after tuning (kept run): 40
+  Min BFMI across chains: 0.627
+  Acceptance rate mean per chain: [0.993308683785503, 0.9925482391337248, 0.9966365577670382, 0.9911597437683446]
+  Tree depth mean per chain: [10.28, 10.58625, 10.36, 9.71]
+  Max tree depth across chains: 11.0
+  Retry settings: target_accept=0.999, +tune=400, +treedepth=2
+
+P(ξ_acute < ξ_chronic) = 1.0000
+
+Protection Factor Exponent β_ξ:
+  Median: 1.731
+  94% HDI: [0.846, 2.792]
+
+Chronic Astrocyte Compensation (multiplicative):
+  Median: 1.169
+  94% HDI: [1.015, 1.339]
+
+Chronic-specific degradation adjustment (multiplicative, >1 reduces degradation):
+  Median: 0.999
+  94% HDI: [0.895, 1.118]
+  Log adjustment median (delta_deg_chronic): -0.001
+
+Posterior Medians:
+  beta_xi: 1.731
+  gamma_coh: 1.243
+  V_NAT8L_scale: 1.518
+  V_ASPA_scale: 0.559
+  damage_acute: 0.850
+  damage_chronic: 0.766
+  k_turnover_scale: 0.098
+  astrocyte_comp: 1.169
+  deg_chronic_adj: 0.999
+  delta_deg_chronic: -0.001
+
+  condition  NAA_pred  Cho_pred  NAA_obs  Cho_obs  error_NAA_%
+    healthy  1.086014  0.220588    1.105    0.225    -1.718168
+  acute_HIV  1.151802  0.246430    1.135    0.245     1.480393
+chronic_HIV  1.008541  0.227049    1.005    0.235     0.352355
+
+Figures saved to: /Users/acdmbpmax/PycharmProjects/Noise-Mediated-Neuroprotection-Explains-Preserved-Neuronal-Metabolism-During-Acute-HIV-Infection/results/figures/v3_6
+  - v3_6_posteriors_xi_beta.pdf/.tiff (posterior densities)
+  - v3_6_ppc_pred_vs_obs.pdf/.tiff (predicted vs observed scatter)
+  - v3_6_ppc_az.pdf/.tiff (ArviZ PPC panels)
+PPC InferenceData saved: results/bayesian_v3_6/ppc_v3_6.nc
