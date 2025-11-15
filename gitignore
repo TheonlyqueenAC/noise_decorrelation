@@ -1,0 +1,98 @@
+# .gitignore for HIV MRS Research Project
+# Protects sensitive data and prevents repo bloat
+
+# ============================================================
+# CRITICAL: Individual Patient Data (NEVER push!)
+# ============================================================
+data/individual/
+*INDIVIDUAL*.csv
+*PATIENT*.csv
+
+# ============================================================
+# Large Binary Files (Keep local, use data repositories)
+# ============================================================
+# PDFs (papers, supplements)
+*.pdf
+*.PDF
+
+# Excel files
+*.xlsx
+*.xls
+*.XLSX
+*.XLS
+
+# Word documents
+*.doc
+*.docx
+*.DOC
+*.DOCX
+
+# ============================================================
+# Raw/Unpublished Data
+# ============================================================
+data/raw/
+data/documentation/
+
+# ============================================================
+# Model Outputs (Regeneratable)
+# ============================================================
+data/model_outputs/
+*.png
+*.jpg
+*.jpeg
+
+# Specific model output files
+posterior_predictive.csv
+summary_*.csv
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# ============================================================
+# IDE
+# ============================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================================
+# Jupyter Notebooks (checkpoints)
+# ============================================================
+.ipynb_checkpoints/
+
+# ============================================================
+# Temporary files
+# ============================================================
+*.tmp
+*.bak
+*.log
+
+# ============================================================
+# EXCEPTIONS: Safe to commit
+# ============================================================
+# Allow published aggregated data only
+!data/master/NAA_DATA_FOR_MODEL.csv
+!data/extracted/SAILASUTA_2012_ACUTE_DATA.csv
+!data/extracted/YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+
+# Allow README and documentation
+!data/README.md
+!data/DATA_INVENTORY.md
+!README.md
+
+# Allow small figures in paper (< 1MB)
+!figures/schematic*.png
+!figures/model_diagram*.png
