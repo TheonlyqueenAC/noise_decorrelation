@@ -1,6 +1,6 @@
 # Noise-Mediated Neuroprotection in Acute HIV
 
-<<<<<<< HEAD
+
 **Computational Study suggests mechanism for the 40-year Acute Protective Paradox in HIV Neuroscience**
 
 ## Overview
