@@ -241,4 +241,4 @@ python regional_bayesian_optimization_v2_final.py
 ---
 
 *Last updated: November 15, 2024*
-*For questions: Contact AC, Nyx Dynamics LLC*
+*Copyright (c) 2025 A.C. Demidont, DO, Nyx Dynamics LLC*
